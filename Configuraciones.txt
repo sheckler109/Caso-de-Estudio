@@ -1,0 +1,79 @@
+Clave de todos los dispositivos:
+12345678
+
+Access Point PRINCIPAL:
+
+
+Access Point SEDE33:
+
+Access Point SEDE05:
+
+Access Point SEDE16:
+
+Configuración Router:
+```
+enable
+configure terminal
+hostname XXXXXXXXXXX
+enable password 12345678
+enable secret 12345678
+line console 0
+password 12345678
+login
+line console vty 0 4
+password 12345678
+login
+exit
+service password-encryption 
+banner motd #Universidad Nacional de Colombia#
+
+// Configurar Interfaz X
+interface XXXXXXXXXX
+ip address XXXXXXXXX XXXXXXXXXX
+no shutdown
+
+router rip
+network 10.0.0.0
+version 2
+copy running-config startup-config
+```
+
+Configuración Switch:
+```
+sdm prefer dual-ipv4-and-ipv6 default
+copy running-config startup-config
+```
+Reiniciar
+```
+enable
+hostname XXXXXXXXXXX
+enable password 12345678
+enable secret 12345678
+line console 0
+password 12345678
+login
+line console vty 0 4
+password 12345678
+login
+exit
+service password-encryption 
+banner motd #Universidad Nacional de Colombia#
+
+ip default-gateway
+
+interface vlan 1
+ip address XXXXXXXXX
+ipv6 address XXXXXXXX link-local
+ipv6 address XXXXXXXX
+
+// Activar todas las interfaces usadas
+interface range XXXX
+no shutdown
+
+// Desactivar las que no están en uso
+interface range XXXX
+shutdown
+
+copy running-config startup-config
+
+```
